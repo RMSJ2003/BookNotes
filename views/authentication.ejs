@@ -1,0 +1,64 @@
+<%- include("partials/header.ejs") %>
+<title>Richard M. Sahagun Jr. | Authentication</title>
+</head>
+<body>
+
+<div id="title-background">
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col-12 p-0">
+                <h1 class="mb-0" id="title">Richard M. Sahagun Jr.</h1>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-12 p-0">
+                <h2 class="m-0 subtitle">Authentication</h2>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+<div id="body-background">
+    <form action="/login" method="POST" class="container py-5">
+        <div class="row mb-4 w-25">
+            <div class="col-12 p-0">
+                <h2 class="m-0 heading">Sign In</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 col-md-3 col-lg-2 col-xl-1 p-0">
+                <p>Username: </p>
+            </div>
+            <div class="col-9 col-md-9 col-lg-10 col-xl-11 p-0">
+                <input type="text" name="username" autofocus required>
+            </div>
+        </div>        
+        <div class="row mb-4">
+            <div class="col-3 col-md-3 col-lg-2 col-xl-1 p-0">
+                <p>Password: </p>
+            </div>
+            <div class="col-9 col-md-3 col-lg-2 col-xl-1 p-0">
+                <input type="password" name="password" required>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-9 offset-xs-3 offset-sm-3 offset-md-3 offset-lg-2 offset-xl-1 p-0">
+                <input type="submit" value="Sign In" class="p-0 link">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <!-- offset skips column/s, instead of making another div to skip column/s, just use offset-->
+            <div class="col-9 offset-xs-3 offset-sm-3 offset-md-3 offset-lg-2 offset-xl-1 p-0">
+                <p><a href="/" class="p-0 link">Back</a></p>
+            </div>
+        </div> 
+        <div class="row mb-4">
+            <!-- offset skips column/s, instead of making another div to skip column/s, just use offset-->
+            <div class="col-9 offset-xs-3 offset-sm-3 offset-md-3 offset-lg-2 offset-xl-1 p-0">
+               <p><%= locals.error ? error : "" %></p>
+            </div>
+        </div>
+    </form>
+</div>
+
+<%- include("partials/footer.ejs") %>

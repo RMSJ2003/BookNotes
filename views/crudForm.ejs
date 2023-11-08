@@ -1,0 +1,158 @@
+<%- include("partials/header.ejs") %>
+<title>Richard M. Sahagun Jr. | Create a New Book Note</title>
+</head>
+<body>
+
+<div id="title-background">
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col-12 p-0">
+                <h1 class="m-0" id="title">Richard M. Sahagun Jr.</h1>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-12 p-0">
+                <h2 class="m-0 subtitle">
+                    <% if (formAction === "/create") { %>
+                        Create a New Book Note                    
+                    <% } else if (formAction === "/update") { %>
+                        Update Book Note
+                    <% } else if (formAction === "/delete") { %>
+                        Delete Book Note
+                    <% } %>
+                </h2>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+<div id="body-background">
+    <div class="container py-5">
+        <form action="<%= formAction %>" method="POST">
+            <!-- Hidden detail: id -->
+            <% if (formAction != "/create") { %>
+                <input type="hidden" name="id" value="<%= bookNote.id %>">
+            <% } %>
+            <div class="row mb-4">
+                <div class="col-12 p-0">
+                    <h2 class="m-0 heading">Book Note Details</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 col-md-3 col-lg-2 col-xl-1 p-0">
+                    <p>Title: </p>
+                </div>
+                <div class="col-9 col-md-5 col-lg-4 col-xl-4 p-0">
+                    <% if (formAction === "/update" || formAction === "/delete") { %>
+                        <input type="hidden" name="title" value="<%= bookNote.title %>" class="w-100">
+                        <p><%= bookNote.title %></p>
+                    <% } else if (formAction === "/create") { %>
+                        <input type="text" name="title" autofocus class="w-100" required>
+                    <% } %>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-3 col-md-3 col-lg-2 col-xl-1 p-0">
+                    <p>Author: </p>
+                </div>
+                <div class="col-9 col-md-5 col-lg-4 col-xl-4 p-0">
+                    <% if (formAction === "/update" || formAction === "/delete") { %>
+                        <input type="hidden" name="author" value="<%= bookNote.author %>" class="w-100">
+                        <p><%= bookNote.author %></p>
+                    <% } else if (formAction === "/create") { %>
+                        <input type="text" name="author" required class="w-100">
+                    <% } %>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-3 col-md-3 col-lg-2 col-xl-1 p-0">
+                    <p>Summary: </p>
+                </div>
+                <div class="col-9 col-md-9 col-lg-10 col-xl-11 p-0">
+                    <% if (formAction === "/update" || formAction === "/delete") { %>
+                        <input type="hidden" name="summary" value="<%= bookNote.summary %>">
+                        <p><%= bookNote.summary %></p>
+                    <% } else if (formAction === "/create") { %>
+                        <textarea name="summary" rows="4" required class="w-100"></textarea>
+                    <% } %>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-3 col-md-3 col-lg-2 col-xl-1 p-0">
+                    <p>Read Date: </p>
+                </div>
+                <div class="col-9 col-md-9 col-lg-10 col-xl-11 p-0">
+                    <% if (formAction === "/update" || formAction === "/delete") { %>
+                        <input type="hidden" name="date" value="<%= bookNote.date %>" id="date-input">
+                        <p><%= bookNote.date %></p>
+                    <% } else if (formAction === "/create") { %>
+                        <input type="date" name="date" required id="date-input">
+                    <% } %>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-3 col-md-3 col-lg-2 col-xl-1 p-0">
+                    <p>Rating: </p>
+                </div>
+                <div class="col-9 col-md-9 col-lg-10 col-xl-11 p-0">
+                    <% if (formAction === "/create") { %>
+                        <input type="number" name="rating" min="1" max="10" step="1" required>
+                    <% } else if (formAction === "/update") { %>
+                        <input type="number" name="rating" value="<%= bookNote.rating %>" min="1" max="10" step="1" required>
+                    <% } else if (formAction === "/delete") { %>
+                        <p><%= bookNote.rating %>/10</p>
+                    <% } %>
+                </div>
+            </div> 
+            <div class="row">
+                <div class="col-3 col-sm-3 col-md-3 col-lg-2 col-xl-1 p-0">
+                    <p>Notes: </p>
+                </div>
+                <div class="col-9 col-sm-9 col-md-9 col-lg-10 col-xl-11 p-0">
+                    <% if (formAction === "/create") { %>
+                        <textarea name="notes" rows="5" required class="w-100"></textarea>
+                    <% } else if (formAction === "/update") { %>
+                        <textarea name="notes" rows="5" required class="w-100"><%= bookNote.notes %></textarea>
+                    <% } else if (formAction === "/delete") { %>
+                        <p><%= bookNote.notes %></p>
+                    <% } %>
+                </div>
+            </div> 
+            <div class="row mt-2">
+                <!-- offset skips column/s, instead of making another div to skip column/s, just use offset-->
+                <div class="col-9 offset-xs-3 offset-sm-3 offset-md-3 offset-lg-2 offset-xl-1 p-0">
+                    <input type="submit" value=
+                    <% if (formAction === "/create") { %>
+                        "Create"
+                    <% } else if (formAction === "/update") { %>
+                        "Update"
+                    <% } else if (formAction === "/delete") { %>
+                        "Delete"
+                    <% } %>
+                    class="p-0 link">
+                </div>
+            </div>
+            <div class="row mt-2">
+                <!-- offset skips column/s, instead of making another div to skip column/s, just use offset-->
+                <div class="col-9 offset-xs-3 offset-sm-3 offset-md-3 offset-lg-2 offset-xl-1 p-0">
+                    <p><%= locals.message ? message : "" %></p>
+                </div>
+            </div>
+        </form>   
+        <div class="row mt-2">
+            <!-- offset skips column/s, instead of making another div to skip column/s, just use offset-->
+            <div class="col-9 offset-xs-3 offset-sm-3 offset-md-3 offset-lg-2 offset-xl-1 p-0">
+                <p><a href="/modify" class="p-0 link">Back</a></p>
+            </div>
+        </div> 
+    </div>        
+</div>
+<script>
+    //Setting date input to disable all future dates' selection
+    const dateInput = document.getElementById('date-input');
+    const today = new Date();
+    const formattedToday = today.toISOString().split('T')[0];
+    dateInput.setAttribute('max', formattedToday);
+</script>
+
+<%- include("partials/footer.ejs") %>

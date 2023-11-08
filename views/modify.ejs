@@ -1,0 +1,97 @@
+<%- include("partials/header.ejs") %>
+<title>Richard M. Sahagun Jr. | Modify Book Notes</title>
+</head>
+<body>
+    
+<div id="title-background">
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col-12 p-0">
+                <h1 class="m-0" id="title">Richard M. Sahagun Jr.</h1>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-12 p-0">
+                <h2 class="m-0 subtitle">Modify Book Notes</h2>
+            </div>
+        </div>
+        <form action="/read" method="POST">
+            <div class="row mb-4">
+                <div class="col-12 p-0">
+                    <p>To create a new Book Note, click 
+                        <input type="submit" name="create" formaction="/crud" value="here!" class="p-0 link">
+                    </p>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-9 col-md-5 col-lg-4 col-xl-4 p-0">
+                    <input type="text" name="title" autofocus placeholder="<%= locals.titleError ? titleError : 'Search Book Title' %>" class="w-100">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-9 col-md-5 col-lg-4 col-xl-4 p-0">
+                    <input type="text" name="author" autofocus placeholder="<%= locals.authorError ? authorError : 'Search Book Author' %>" class="w-100">
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12   p-0">
+                    <input type="submit" name="readModification" value="Search" class="p-0 link">
+                </div>
+            </div>
+            <div class="row mb-4">
+                <p class="p-0"><a href="/" class="link">Back</a></p>
+            </div>
+            <div class="row mb-4">
+                <div class="col-12 p-0">
+                    <p>Sort by <input type="submit" name="sortTitleModif" value="title" class="link"> |
+                        <input type="submit" name="sortDateModif" value="newest" class="link"> |
+                        <input type="submit" name="sortRatingModif" value="rating" class="link">
+                    </p>
+                </div>
+            </div>
+        </form>
+        <hr>
+    </div>
+</div>
+<div id="body-background">
+    <% for( let index = 0; index < books.length; index++ ) { %>
+        <form action="/crud" method="POST">
+            <div class="container py-5 px-0">
+                <div class="mb-5">
+                    <!-- Replace img src with acutall img cover and actual alt -->
+                    <img src="<%= `https://books.google.com/books/content?id=${books[index].cover_id}&printsec=frontcover&img=1&zoom=5&source=gbs_api` %>" alt="Book Cover" class="me-4 mb-2 book-cover-img">
+                    <h2 class="mb-4 heading">
+                        <a href="" class="link"><%= books[index].title %></a>
+                    </h2>
+                    <div class="subtitle">
+                        Date read: 
+
+                        <%= books[index].read_date %>
+                    </div>
+                    <div class="subtitle mb-4">My rating: <%= books[index].rating %>/10</div>
+                    <p class="mx-0 justify"><%= books[index].summary %></p>
+                    <p>
+                        <input type="submit" name="update" value="Update" class="p-0 link">
+                    this book
+                    </p>
+
+                    <!-- Hidden book note's details: -->
+                    <input type="hidden" name="id" value="<%= books[index].id %>" autocomplete="off">
+                    <input type="hidden" name="title" value="<%= books[index].title %>" autocomplete="off">
+                    <input type="hidden" name="author" value="<%= books[index].author %>" autocomplete="off">
+                    <input type="hidden" name="date" value="<%= books[index].read_date %>" autocomplete="off">
+                    <input type="hidden" name="summary" value="<%= books[index].summary %>" autocomplete="off">
+                    <input type="hidden" name="rating" value="<%= books[index].rating %>" autocomplete="off">
+                    <input type="hidden" name="notes" value="<%= books[index].notes %>" autocomplete="off">
+
+                    <p>
+                        <input type="submit" name="delete" value="DELETE" class="p-0 link">
+                    this book
+                    </p>
+                </div>
+            </div>    
+        </form>
+    <% } %>
+</div>
+
+<%- include("partials/footer.ejs") %>

@@ -1,0 +1,18 @@
+<div class="container py-5 px-0">
+    <div class="row">
+        <div class="col-12">
+            <footer class="mb-0">
+                <p>Copyright © <span id="currentYear"></span></p>
+            </footer>
+        </div>
+    </div>
+</div>
+<script>
+    // jQuery code to get the current year and update the footer
+    $(document).ready(function() {
+        const currentYear = new Date().getFullYear();
+        $("#currentYear").text(currentYear);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+body {
+    background-color: #212A3E;
+}
+
+#title {
+    font-family: 'Noto Serif Display', serif;
+    color: #9BA4B5;
+    font-weight: bold;
+}
+
+#title-background {
+    background-color: #212A3E;
+}
+
+.subtitle {
+    font-family: 'Noto Serif Display', serif;
+    color: #9BA4B5;
+    font-weight: 100;
+}
+
+#body-background {
+    background-color: #394867;
+}
+
+p {
+    color: #F1F6F9;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.link {
+    color: #F1F6F9;
+    transition: color 0.3s ease;
+    text-decoration: underline;
+}
+
+.link:hover {
+    color: #9BA4B5;
+    cursor: pointer;
+}
+
+.heading {
+    font-family: 'Noto Serif Display', serif;
+    color: #F1F6F9;
+}
+
+.book-cover-img {
+    width: 150px;
+    height: 200;
+    border-radius: 10px;
+    padding: 0;
+    float: left;
+}
+
+.justify {
+    text-align: justify;
+}
+
+input, textarea {
+    border: none;
+    background-color: #F1F6F9;
+    color: #394867;
+    border-radius: 5px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+input[type="submit"] {
+    background: none;
+}
+
+input:focus, textarea {
+    outline: none; /* Remove the border or set it to transparent */
+}
+
+hr {
+    background-color: #F1F6F9;
+    height: 1px;
+    border: none;
+}
+
